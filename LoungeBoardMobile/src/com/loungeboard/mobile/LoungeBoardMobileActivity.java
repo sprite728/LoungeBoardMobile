@@ -1,45 +1,48 @@
 package com.loungeboard.mobile;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class LoungeBoardMobileActivity extends Activity {
-    /** Called when the activity is first created. */
-//	int counter;
-//	Button add;// Remember to import button
-//	Button sub;
-//	TextView display;
+    
+	
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        Button signup = (Button) findViewById(R.id.buttonMainSignUp);
         
-//        counter = 0;
-//        add = (Button) findViewById(R.id.bAdd);
-//        sub = (Button) findViewById(R.id.bSub);
-//        display = (TextView) findViewById(R.id.tvDisplay);
-//        add.setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				counter++;
-//				display.setText("Your total is " + counter);
-//			}
-//		});
-//        
-//        sub.setOnClickListener(new View.OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				counter--;
-//				display.setText("" + counter); // Only type in counter is not ok, you should add ""
-//			}
-//		});
-        
-        
+        signup.setOnClickListener(new Button.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent();
+				
+				intent.setClass(LoungeBoardMobileActivity.this, RegisterActivity.class);
+				startActivity(intent);
+				
+			}
+		} );       
+    }
+    
+    // Check Network Connectivity
+    public boolean checkNetworkConnection(){
+    	// Use getActiveNetworkInfo & isConnected()
+    	ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+    	NetworkInfo networkInfo = connManager.getActiveNetworkInfo();
+    	if(networkInfo != null && networkInfo.isConnected()){
+    		return true;
+    	}else {
+    		return false;
+    	}
     }
 }

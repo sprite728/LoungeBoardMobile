@@ -3,30 +3,14 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Your total is 0"
-        android:textSize="45dp"
-        android:layout_gravity="center" 
-        android:gravity="center"  
-        android:id="@+id/tvDisplay"/> <!-- tv= textView, @+ => set reference -->
-
     
     <Button
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="Add one"
+        android:text="@string/register_signup"
         android:textSize="20dp"
         android:layout_gravity="center"
-        android:id="@+id/bAdd"/>
-    <Button
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:text="Subtract one"
-        android:textSize="20dp"
-        android:layout_gravity="center"
-        android:id="@+id/bSub"/>
+        android:id="@+id/buttonMainSignUp"/>
+    
 
 </LinearLayout>

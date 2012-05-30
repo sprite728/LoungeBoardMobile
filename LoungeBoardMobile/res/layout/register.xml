@@ -11,7 +11,7 @@
         android:layout_gravity="center"
         android:textSize="18dp"
         android:layout_marginTop="10dp"
-        android:text="Create LoungeBoard Account" />
+        android:text="@string/register_title" />
 
     <EditText
         android:id="@+id/editTextUsername"
@@ -21,7 +21,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:hint="Username" />
+        android:hint="@string/register_username" />
 
 
     <EditText
@@ -31,7 +31,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:ems="10"
-        android:hint="First Name" />
+        android:hint="@string/register_firstname" />
     
     
     <EditText
@@ -41,7 +41,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:ems="10"
-        android:hint="Last Name" />
+        android:hint="@string/register_lastname" />
 
     <EditText
         android:id="@+id/editTextEmail"
@@ -50,7 +50,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:ems="10"
-        android:hint="Email" />
+        android:hint="@string/register_email" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -59,8 +59,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:ems="10" 
-        android:password="true"
-        android:hint="Password"/>
+        android:inputType="textPassword"
+        android:hint="@string/register_password"/>
 
     <EditText
         android:id="@+id/editTextConfirmPassword"
@@ -69,8 +69,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:ems="10" 
-        android:password="true"
-        android:hint="Confirm Password"/>
+        android:inputType="textPassword"
+        android:hint="@string/register_password2"/>
 
     <TextView
         android:id="@+id/textViewPolicy"
@@ -79,7 +79,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:gravity="center"
-        android:text="LoungeBoard needs your Bluetooth ID to know where you are!" />
+        android:text="@string/register_policy" />
 
     <CheckBox
         android:id="@+id/checkBoxBTPermission"
@@ -87,7 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:gravity="center"
-        android:text="I allow to share my Bluetooth ID" />
+        android:text="@string/register_btpermission" />
 
     <Button
         android:id="@+id/buttonSignUp"
@@ -96,6 +96,6 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:text="Sign Up" />
+        android:text="@string/register_signup" />
 
 </LinearLayout>

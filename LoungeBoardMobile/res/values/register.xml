@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="register_activitytitle">LoungeBoard</string>
+    <string name="register_title">Create LoungeBoard Account</string>
+    <string name="register_username">Username</string>
+    <string name="register_firstname">First Name</string>
+    <string name="register_lastname">Last Name</string>
+    <string name="register_email">Email</string>
+    <string name="register_password">Password</string>
+    <string name="register_password2">Confirm Password</string>
+ 	<string name="register_policy">LoungeBoard needs your Bluetooth ID to know where you are!</string>
+	<string name="register_btpermission">I allow to share my Bluetooth ID</string>
+	<string name="register_signup">Sign Up</string>
+</resources>
