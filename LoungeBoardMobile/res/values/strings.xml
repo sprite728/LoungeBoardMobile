@@ -3,5 +3,7 @@
 
     <string name="hello">Hello World, LoungeBoardMobileActivity!</string>
     <string name="app_name">LoungeBoardMobile</string>
+    <string name="alert_dialog_share_bluetooth_not_selected">You need to share your bluetooth address to sign up. Check allow.</string>
+    <string name="alert_dialog_ok">OK</string>
 
 </resources>

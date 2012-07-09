@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LoungeBoardMobileActivity extends Activity {
     
@@ -19,6 +20,10 @@ public class LoungeBoardMobileActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         Button signup = (Button) findViewById(R.id.buttonMainSignUp);
+        
+
+        // Test Toast
+        Toast.makeText(getBaseContext(), "Test Toast", Toast.LENGTH_LONG).show();
         
         signup.setOnClickListener(new Button.OnClickListener() {
 			
