@@ -19,11 +19,11 @@ public class LoungeBoardMobileActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        Button signup = (Button) findViewById(R.id.buttonMainSignUp);
-        
+        Button signup = (Button) findViewById(R.id.buttonMainRegister);
+        Button login = (Button) findViewById(R.id.buttonMainLogin);
 
-        // Test Toast
-        Toast.makeText(getBaseContext(), "Test Toast", Toast.LENGTH_LONG).show();
+//        // Test Toast
+//        Toast.makeText(getBaseContext(), "Test Toast", Toast.LENGTH_LONG).show();
         
         signup.setOnClickListener(new Button.OnClickListener() {
 			
@@ -36,7 +36,21 @@ public class LoungeBoardMobileActivity extends Activity {
 				startActivity(intent);
 				
 			}
-		} );       
+		} );   
+        
+        
+        login.setOnClickListener(new Button.OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent();
+				
+				intent.setClass(LoungeBoardMobileActivity.this, LoginActivity.class);
+			}
+        	
+        } );
+        
     }
     
     // Check Network Connectivity

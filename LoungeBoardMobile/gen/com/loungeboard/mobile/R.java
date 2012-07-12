@@ -14,20 +14,19 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int buttonMainSignUp=0x7f060003;
-        public static final int buttonSignUp=0x7f06000d;
-        public static final int checkBoxBTPermission=0x7f06000c;
-        public static final int editTextConfirmPassword=0x7f06000a;
-        public static final int editTextEmail=0x7f060008;
-        public static final int editTextFirstName=0x7f060006;
-        public static final int editTextLastName=0x7f060007;
-        public static final int editTextPassword=0x7f060009;
-        public static final int editTextUsername=0x7f060005;
+        public static final int buttonMainLogin=0x7f060003;
+        public static final int buttonMainRegister=0x7f060004;
+        public static final int buttonSignUp=0x7f06000c;
+        public static final int checkBoxBTPermission=0x7f06000b;
+        public static final int editTextConfirmPassword=0x7f060009;
+        public static final int editTextEmail=0x7f060007;
+        public static final int editTextPassword=0x7f060008;
+        public static final int editTextUsername=0x7f060006;
         public static final int switchButtonHomeBT=0x7f060002;
         public static final int textViewHomeTitle=0x7f060000;
         public static final int textViewHomeTwitter=0x7f060001;
-        public static final int textViewPolicy=0x7f06000b;
-        public static final int textViewTitle=0x7f060004;
+        public static final int textViewPolicy=0x7f06000a;
+        public static final int textViewTitle=0x7f060005;
     }
     public static final class layout {
         public static final int homepage=0x7f030000;
@@ -41,6 +40,8 @@ public final class R {
         public static final int hello=0x7f04000d;
         public static final int homepage_share_twitter=0x7f040001;
         public static final int homepage_title=0x7f040000;
+        public static final int main_login=0x7f040011;
+        public static final int main_register=0x7f040012;
         public static final int register_activitytitle=0x7f040002;
         public static final int register_btpermission=0x7f04000b;
         public static final int register_email=0x7f040007;

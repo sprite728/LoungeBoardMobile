@@ -1,6 +1,7 @@
 package com.loungeboard.mobile;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,8 +38,6 @@ public class RegisterActivity extends Activity{
 	public final static String USERNAME = "com.loungeboard.mobile.USERNAME";
 	
 	private EditText usernameField;
-	private EditText firstnameField;
-	private EditText lastnameField;
 	private EditText emailField;
 	private EditText passwordField;
 	private EditText password2Field;
@@ -52,16 +51,19 @@ public class RegisterActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		
+		// First, setup the background, the layout file is at res>layout>register
 		setContentView(R.layout.register);
+		
+		// Hook up the views, which include all the fields, buttons and all the rectangle things
 		findViews();
 		
 //		Log.i(DEB_TAG, "onCreate");
 //		
+		// Hook an OnClickListener to the signup button
 		signupButton.setOnClickListener(signup);
 	}
 
-	
-	
 	@Override
 	protected Dialog onCreateDialog(int id) {
 		// TODO Auto-generated method stub
@@ -83,7 +85,7 @@ public class RegisterActivity extends Activity{
 		public void onClick(View v) {
 			// Check if user has selected to share their Bluetooth Address
 			if(!shareBtIdCheckBox.isChecked()){
-				// if not checked, show a pop up window or add a text in red
+				// if not checked, show a pop up window
 				AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(RegisterActivity.this);
 				alertDialogBuilder.setTitle("Hey!");
 				alertDialogBuilder
@@ -97,43 +99,39 @@ public class RegisterActivity extends Activity{
 						}
 					});
 				
-				// create alert dialog
+				// Create alert dialog
 				AlertDialog alertDialog = alertDialogBuilder.create();
 				
-				// show it
+				// Show it
 				alertDialog.show();
 				
 			}
 			
-			
-			// When user click button, calls AsyncTask
+			// When user click Singup button, calls AsyncTask
 			// Before attempting to fetch the URL, makes sure that there is a network connection
 			
 			
 			Log.d(DEB_TAG+"onClick", "onClick");
 //			NetworkHelper nwHelper = new NetworkHelper();
 		
+			// Translate all the input to string format
 			String username = usernameField.getText().toString();
-			String lastname = lastnameField.getText().toString();
-			String firstname = firstnameField.getText().toString();
 			String email = emailField.getText().toString();
 			String password = passwordField.getText().toString();
 			String password2 = password2Field.getText().toString();
 		
+			// Check Network Connection
 			ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 			NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-			if( networkInfo != null && networkInfo.isConnected() ){ // Network Is Connected
+			if( networkInfo != null && networkInfo.isConnected() ){ // If Network Is Connected
 				
-				
-				// Get the bluetooth Machine Address here
+				// Get the Bluetooth Machine Address here
 				BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 				String BTID = mBluetoothAdapter.getAddress();
 				Log.d(DEB_TAG, "Bluetooth Address = " + BTID);
 				
-				
-				
-				new RegisterAccount().execute(username, lastname, firstname, email, password, password2, BTID);
-				
+				// RegisterAccount is where AsyncTask actually work
+				new RegisterAccount().execute(username, email, password, password2, BTID);
 				
 			} else {
 				// Network Is not Connected
@@ -147,7 +145,7 @@ public class RegisterActivity extends Activity{
 	    @Override
 	    protected void onPreExecute() {
 	    	
-	    	// While sign up, the screen should show up a progress bar
+	    	// While sign up, the screen should show up a spinner
 	        dialog = new ProgressDialog(RegisterActivity.this);
 	        dialog.setMessage("Waiting...");
 	        dialog.setTitle("Connect to LoungeBoard...");
@@ -161,26 +159,26 @@ public class RegisterActivity extends Activity{
 			
 			// TODO Auto-generated method stub
 			String username = (String) params[0];
-			String lastname = (String) params[1];
-			String firstname = (String) params[2];
-			String email = (String) params[3];
-			String password = (String) params[4];
-			String password2 = (String) params[5];
-			String BTID = (String) params[6];
+			String email = (String) params[1];
+			String password = (String) params[2];
+			String password2 = (String) params[3];
+			String BTID = (String) params[4];
+			
+			Log.d(DEB_TAG, "doInBackground Begin");
 			
 			try {
 				HttpClient httpclient = new DefaultHttpClient();
 //				URI host = new URI("http://inteco.groups.si.umich.edu/LoungeBoardMobile/");
-				HttpPost httppost = new HttpPost("http://inteco.groups.si.umich.edu/LoungeBoardMobile/");
+				HttpPost httppost = new HttpPost("http://67.194.36.171:3000/users.json");
 				
 				List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-				nameValuePairs.add(new BasicNameValuePair("username", username));
-				nameValuePairs.add(new BasicNameValuePair("lastname", lastname));
-				nameValuePairs.add(new BasicNameValuePair("firstname", firstname));
-				nameValuePairs.add(new BasicNameValuePair("email", email));
-				nameValuePairs.add(new BasicNameValuePair("password", password));
-				nameValuePairs.add(new BasicNameValuePair("password2", password2));
-				nameValuePairs.add(new BasicNameValuePair("BTID", BTID));
+				nameValuePairs.add(new BasicNameValuePair("user[name]", username));
+				nameValuePairs.add(new BasicNameValuePair("user[email]", email));
+				nameValuePairs.add(new BasicNameValuePair("user[password]", password));
+				nameValuePairs.add(new BasicNameValuePair("user[password_confirmation]", password2));
+				nameValuePairs.add(new BasicNameValuePair("user[bluetooth_attributes][mac_addr]", BTID));
+				
+				
 				
 				// Execute HTTP Post Request
 				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs, HTTP.UTF_8));
@@ -191,22 +189,21 @@ public class RegisterActivity extends Activity{
 				int status = response.getStatusLine().getStatusCode();
 				Log.i(DEB_TAG, "status = " + status);
 				
-				if(status == 200){
+				if(status == 201){
 					Intent intent = new Intent(RegisterActivity.this, HomePageActivity.class);
 					intent.putExtra(USERNAME, username);
 					startActivity(intent);
 				} else {
 					// if not success
 					
+					
 				}
-				
-				
 				return "OK";
 				
 			} catch (IOException e){
+				Log.d(DEB_TAG, "Unable to retrieve web page.");
 				return "Unable to retrieve web page.";
-			}
-			
+			} 
 		}
 
 		// onPostExecute displays the results of the AsyncTask
@@ -223,8 +220,6 @@ public class RegisterActivity extends Activity{
 	private void findViews()
 	{
 		usernameField = (EditText) findViewById(R.id.editTextUsername);
-		firstnameField = (EditText) findViewById(R.id.editTextFirstName);
-		lastnameField = (EditText) findViewById(R.id.editTextLastName);
 		emailField = (EditText) findViewById(R.id.editTextEmail);
 		passwordField = (EditText) findViewById(R.id.editTextPassword);
 		password2Field = (EditText) findViewById(R.id.editTextConfirmPassword);	
