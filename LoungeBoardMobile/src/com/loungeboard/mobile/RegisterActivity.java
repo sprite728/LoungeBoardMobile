@@ -144,7 +144,7 @@ public class RegisterActivity extends Activity{
 	private class RegisterAccount extends AsyncTask {
 	    @Override
 	    protected void onPreExecute() {
-	    	
+	    	super.onPreExecute();
 	    	// While sign up, the screen should show up a spinner
 	        dialog = new ProgressDialog(RegisterActivity.this);
 	        dialog.setMessage("Waiting...");

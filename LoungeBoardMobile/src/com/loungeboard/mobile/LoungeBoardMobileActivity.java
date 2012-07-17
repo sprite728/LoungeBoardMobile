@@ -47,6 +47,7 @@ public class LoungeBoardMobileActivity extends Activity {
 				Intent intent = new Intent();
 				
 				intent.setClass(LoungeBoardMobileActivity.this, LoginActivity.class);
+				startActivity(intent);
 			}
         	
         } );

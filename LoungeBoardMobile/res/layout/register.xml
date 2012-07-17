@@ -76,6 +76,6 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:text="@string/register_signup" />
+        android:text="@string/registerOnButton" />
 
 </LinearLayout>
